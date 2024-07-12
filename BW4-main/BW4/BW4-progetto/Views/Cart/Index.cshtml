@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BW4_progetto.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<div class="container mt-3">
+    <h2>Your Cart</h2>
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="cart-item-@item.CartItemId">
+                        <td>@item.Product.Name</td>
+                        <td>$@item.Product.Price</td>
+                        <td>
+                            <input type="number" class="form-control quantity-input" data-id="@item.CartItemId" value="@item.Quantity" min="1" style="width: 60px;">
+                        </td>
+                        <td>$@(item.Product.Price * item.Quantity)</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="deleteCartItem(@item.CartItemId)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <h3>Total: $@Model.Sum(item => item.Product.Price * item.Quantity)</h3>
+            <button class="btn btn-danger" onclick="deleteAllCartItems()">
+                <i class="fas fa-trash-alt"></i> Clear Cart
+            </button>
+        </div>
+    }
+    else
+    {
+        <p>Your cart is empty.</p>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/cart.js"></script>
+}

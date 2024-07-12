@@ -1,0 +1,68 @@
+localhost\sqlexpress.ECommerceDB.dbo
+
+CREATE TABLE [dbo].[CartItems] (
+    [CartItemId] INT IDENTITY (1, 1) NOT NULL,
+    [CartId]     INT NULL,
+    [ProductId]  INT NULL,
+    [Quantity]   INT NULL,
+    PRIMARY KEY CLUSTERED ([CartItemId] ASC),
+    FOREIGN KEY ([CartId]) REFERENCES [dbo].[Carts] ([CartId]),
+    FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Products] ([ProductId])
+);
+
+CREATE TABLE [dbo].[Carts] (
+    [CartId]      INT      IDENTITY (1, 1) NOT NULL,
+    [CreatedDate] DATETIME DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([CartId] ASC)
+);
+
+CREATE TABLE [dbo].[Products] (
+    [ProductId]   INT             IDENTITY (1, 1) NOT NULL,
+    [Name]        NVARCHAR (100)  NOT NULL,
+    [Description] NVARCHAR (MAX)  NOT NULL,
+    [Price]       DECIMAL (18, 2) NOT NULL,
+    [ImageUrl]    NVARCHAR (255)  NOT NULL,
+    PRIMARY KEY CLUSTERED ([ProductId] ASC)
+);
+
+INSERT INTO Products (Name, Description, Price, ImageUrl)
+VALUES 
+('Laptop', 'A high-performance laptop for all your computing needs.', 999.99, 'https://example.com/images/laptop.jpg'),
+('Smartphone', 'A latest-generation smartphone with all the features you need.', 799.99, 'https://example.com/images/smartphone.jpg'),
+('Headphones', 'Noise-cancelling over-ear headphones for immersive sound.', 199.99, 'https://example.com/images/headphones.jpg'),
+('Smartwatch', 'A stylish smartwatch with health tracking features.', 249.99, 'https://example.com/images/smartwatch.jpg'),
+('Camera', 'A DSLR camera for professional photography.', 499.99, 'https://example.com/images/camera.jpg'),
+('Tablet', 'A lightweight tablet for entertainment and productivity.', 399.99, 'https://example.com/images/tablet.jpg'),
+('Speaker', 'A portable Bluetooth speaker with high-quality sound.', 99.99, 'https://example.com/images/speaker.jpg'),
+('Monitor', 'A 27-inch 4K monitor for stunning visuals.', 299.99, 'https://example.com/images/monitor.jpg'),
+('Keyboard', 'A mechanical keyboard with RGB lighting.', 89.99, 'https://example.com/images/keyboard.jpg'),
+('Mouse', 'A wireless mouse with ergonomic design.', 49.99, 'https://example.com/images/mouse.jpg'),
+('Gaming Console', 'Next-gen gaming console with ultra-fast loading times.', 499.99, 'https://example.com/images/gaming-console.jpg'),
+('External Hard Drive', '1TB external hard drive for all your storage needs.', 79.99, 'https://example.com/images/external-hard-drive.jpg'),
+('Fitness Tracker', 'Track your fitness and health metrics with this device.', 129.99, 'https://example.com/images/fitness-tracker.jpg'),
+('VR Headset', 'Experience virtual reality with this advanced VR headset.', 299.99, 'https://example.com/images/vr-headset.jpg'),
+('Printer', 'All-in-one printer, scanner, and copier.', 149.99, 'https://example.com/images/printer.jpg'),
+('Router', 'High-speed wireless router for fast internet connectivity.', 89.99, 'https://example.com/images/router.jpg'),
+('Drone', 'High-performance drone with 4K camera.', 699.99, 'https://example.com/images/drone.jpg'),
+('Projector', 'Portable projector with HD resolution.', 349.99, 'https://example.com/images/projector.jpg'),
+('Smart Home Hub', 'Control all your smart home devices with this hub.', 129.99, 'https://example.com/images/smart-home-hub.jpg'),
+('Electric Toothbrush', 'Rechargeable electric toothbrush with multiple modes.', 59.99, 'https://example.com/images/electric-toothbrush.jpg'),
+('Coffee Maker', 'Programmable coffee maker with multiple brew settings.', 79.99, 'https://example.com/images/coffee-maker.jpg'),
+('Air Purifier', 'HEPA air purifier for clean and fresh air.', 199.99, 'https://example.com/images/air-purifier.jpg'),
+('Blender', 'High-speed blender for smoothies and shakes.', 49.99, 'https://example.com/images/blender.jpg'),
+('Microwave Oven', 'Compact microwave oven with digital controls.', 89.99, 'https://example.com/images/microwave-oven.jpg'),
+('Smart Thermostat', 'Smart thermostat for energy-efficient home heating.', 149.99, 'https://example.com/images/smart-thermostat.jpg'),
+('Washing Machine', 'Front-loading washing machine with various wash cycles.', 699.99, 'https://example.com/images/washing-machine.jpg'),
+('Refrigerator', 'Energy-efficient refrigerator with ample storage space.', 999.99, 'https://example.com/images/refrigerator.jpg'),
+('Air Fryer', 'Healthy air fryer for low-oil cooking.', 99.99, 'https://example.com/images/air-fryer.jpg'),
+('Electric Kettle', 'Fast-boiling electric kettle with auto shut-off.', 39.99, 'https://example.com/images/electric-kettle.jpg'),
+('Slow Cooker', 'Programmable slow cooker for easy meal prep.', 49.99, 'https://example.com/images/slow-cooker.jpg'),
+('Rice Cooker', 'Electric rice cooker with keep-warm function.', 29.99, 'https://example.com/images/rice-cooker.jpg'),
+('Toaster', '4-slice toaster with browning control.', 24.99, 'https://example.com/images/toaster.jpg'),
+('Stand Mixer', 'Powerful stand mixer with multiple attachments.', 199.99, 'https://example.com/images/stand-mixer.jpg'),
+('Food Processor', 'Multi-function food processor for chopping and slicing.', 99.99, 'https://example.com/images/food-processor.jpg'),
+('Vacuum Cleaner', 'Bagless vacuum cleaner with powerful suction.', 149.99, 'https://example.com/images/vacuum-cleaner.jpg'),
+('Dishwasher', 'Energy-efficient dishwasher with multiple wash cycles.', 499.99, 'https://example.com/images/dishwasher.jpg'),
+('Hair Dryer', 'Professional hair dryer with ionic technology.', 59.99, 'https://example.com/images/hair-dryer.jpg'),
+('Electric Shaver', 'Rechargeable electric shaver with precision blades.', 89.99, 'https://example.com/images/electric-shaver.jpg'),
+('Heated Blanket', 'Electric heated blanket with adjustable heat settings.', 69.99, 'https://example.com/images/heated-blanket.jpg');

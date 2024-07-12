@@ -1,0 +1,44 @@
+﻿@model BW4_progetto.Models.Product
+
+@if (Model != null)
+{
+    <div>
+        <h4>@Model.Name</h4>
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid">
+        <p class="price">$@Model.Price</p>
+        <p>@Model.Description</p>
+        <div class="quantity">
+            <label for="modalQuantity">Quantity:</label>
+            <input type="number" id="modalQuantity" name="quantity" min="1" value="1" class="form-control" style="width: 60px; display: inline;">
+        </div>
+        <button id="addToCartBtn" class="btn btn-primary mt-3" data-product-id="@Model.ProductId">Add to Cart <i class="fas fa-shopping-basket"></i></button>
+    </div>
+}
+else
+{
+    <div>Product not found</div>
+}
+
+
+
+
+@section Scripts {
+    <script>
+        function addToCart(productId) {
+            var quantity = $('#quantity').val();
+            $.ajax({
+                url: '@Url.Action("AddToCart", "Cart")',
+                type: 'POST',
+                data: { productId: productId, quantity: quantity },
+                success: function (result) {
+                    if (result.success) {
+                        alert('Product added to cart');
+                        updateCartCounter();
+                    } else {
+                        alert('Error adding product to cart');
+                    }
+                }
+            });
+        }
+    </script>
+}

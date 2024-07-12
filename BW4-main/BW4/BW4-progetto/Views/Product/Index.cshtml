@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BW4_progetto.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="#" class="product-link" data-id="@product.ProductId">@product.Name</a>
+                    </h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text price">$@product.Price</p>
+                    <a href="#" class="btn btn-primary product-link" data-id="@product.ProductId">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
